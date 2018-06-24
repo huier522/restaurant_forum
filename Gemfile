@@ -36,6 +36,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 #20180621 for user Auth
 
+gem 'carrierwave'
+# photo uploader
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
