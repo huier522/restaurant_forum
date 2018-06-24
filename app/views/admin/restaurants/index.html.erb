@@ -4,7 +4,7 @@
         <li>
             <%= restaurant.name %>
             <%= link_to 'Show', admin_restaurant_path(restaurant)%>
-            <%= link_to 'Edit', edit_admin_restaurant_paht(restaurant) %>
+            <%= link_to 'Edit', edit_admin_restaurant_path(restaurant) %>
             <%= link_to 'Delete', admin_restaurant_path(restaurant), method: :delete, data: {confirm: "Are you sure?"} %>
         </li>
     <% end %>
