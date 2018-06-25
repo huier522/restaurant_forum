@@ -45,6 +45,12 @@ gem 'ffaker'
 gem 'kaminari'
 # pagiante
 
+gem 'bootstrap-sass', '~> 3.3.7'
+# bootstrap
+
+gem 'jquery-rails'
+# JavaScript for jQuery
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
