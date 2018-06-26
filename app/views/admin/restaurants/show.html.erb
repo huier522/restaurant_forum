@@ -5,6 +5,7 @@
 		</div>
 		<div class="col-md-4">
 			<%= image_tag @restaurant.image, class: "img-responsive center-block" %>
+			<%# class=class: "img-responsive center-block" 圖片居中 %>
 			<br>
 			<div class="well">
 				<ul class="list-unstyled">
@@ -22,18 +23,3 @@
 		<%= link_to 'Back to index', admin_restaurants_path %>
 	</div>
 </div>
-
-
-<!-- OLD
-<h1><%= @restaurant.name %></h1>
-
-Opening Hours: <%= @restaurant.opening_hours %><br>
-Tel: <%= @restaurant.tel %><br>
-Address: <%= @restaurant.address %><br>
-Description: <%= @restaurant.description %><br>
-<%= image_tag @restaurant.image, width: '600px' %>
-
-<br>
-
-<%= link_to 'Back to index', admin_restaurants_path %>
--->
