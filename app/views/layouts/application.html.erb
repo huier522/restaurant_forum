@@ -9,11 +9,17 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%# 警報 %>
+
+    <% if flash[:notice] %>
+      <div class="alert alert-success" role="alert"><%= notice %></div>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <div class="alert alert-danger" role="alert"><%= alert %></div>
+    <% end %>
 
     <%# 導覽列 %>
-
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -32,6 +38,7 @@
           <ul class="pull-right text-right nav navbar-nav">
             <% if current_user %>
             <li><p class="navbar-text"> Hi, <%= current_user.email %></p></li>
+            <%# navbar-text：用於垂直置中 %>
             <li><%= link_to('登出', destroy_user_session_path, method: :delete) %></li>
             <%# link_to 預設動作是 GET，所以需要指定到相對的method: :delete %>
             <li><%= link_to('修改密碼', edit_user_registration_path) %></li>
