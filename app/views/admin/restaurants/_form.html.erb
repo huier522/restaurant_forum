@@ -12,6 +12,15 @@
 
 		<%= form_for [:admin, @restaurant] do |f| %>
 			<div class="from-group">
+				<%= f.label :catetory, "Category" %>
+				<%= f.collection_select :category_id, Category.all, :id, :name, 
+				{prompt: "請選擇"}, {class: "form-control"}  %>
+			</div>
+			<!-- 官方格式：collection_select(method, collection, value_method, text_method, options = {}, html_options = {}) -->
+
+			<br>
+
+			<div class="from-group">
 				<%= f.label :name, "Name" %>
     		<%= f.text_field :name, class: "form-control" %>
 			</div>
