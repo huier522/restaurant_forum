@@ -3,6 +3,7 @@
   <h1>餐廳分類總表</h1>
 
   <div class="row">
+
     <div class="col-md-12">
 
       <div>
@@ -19,6 +20,9 @@
             <%# placeholder 是為文字框顯示提示訊息 %>
           </div>
           <%= f.submit class: "btn btn-primary" %>
+          <% if @category.errors.any? %>
+            <%= @category.errors.full_messages.to_sentence %>
+          <% end %>
         <% end %>
       </div>
 
