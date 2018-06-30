@@ -6,6 +6,13 @@
 		<div class="col-md-12">
 
 			<div>
+				<%= link_to 'Restaurant', admin_restaurants_path %> | 
+				<%= link_to 'Categories', admin_categories_path %>
+			</div>
+
+			<br>
+
+			<div>
 				<%= link_to 'New Restaurant', new_admin_restaurant_path, class: "btn btn-primary" %>
 			</div>
 
@@ -23,30 +30,31 @@
 						<th>Delete</th>
 					</tr>
 				</thead>
-					<tbody>
-						<% @restaurants.each do |restaurant| %>
-							<tr>
-								<th scope="row"><%= restaurant.id %></th>
-								<td>[<%= restaurant.category.name %>]</td>
-								<td><%= restaurant.name %></td>
-								<td>
-									<%= link_to admin_restaurant_path(restaurant) do %>
-										<span class="glyphicon glyphicon-info-sign"></span>
-									<% end %>
-								</td>
-								<td>
-									<%= link_to edit_admin_restaurant_path(restaurant) do %>
-										<span class="glyphicon glyphicon-edit"></span>
-									<% end %>
-								</td>
-								<td>
-									<%= link_to admin_restaurant_path(restaurant), method: :delete, data: {confirm: "Are you sure?"} do %>
-										<span class="glyphicon glyphicon-remove"></span>
-									<% end %>
-								</td>
-							</tr>
-						<% end %>
-					</tbody>
+				<tbody>
+					<% @restaurants.each do |restaurant| %>
+						<tr>
+							<th scope="row"><%= restaurant.id %></th>
+							<%# 規定單元格是row的表頭 %>
+							<td>[<%= restaurant.category.name %>]</td>
+							<td><%= restaurant.name %></td>
+							<td>
+								<%= link_to admin_restaurant_path(restaurant) do %>
+									<span class="glyphicon glyphicon-info-sign"></span>
+								<% end %>
+							</td>
+							<td>
+								<%= link_to edit_admin_restaurant_path(restaurant) do %>
+									<span class="glyphicon glyphicon-edit"></span>
+								<% end %>
+							</td>
+							<td>
+								<%= link_to admin_restaurant_path(restaurant), method: :delete, data: {confirm: "Are you sure?"} do %>
+									<span class="glyphicon glyphicon-remove"></span>
+								<% end %>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
 			</table>
 
 			<div class="text-center">
