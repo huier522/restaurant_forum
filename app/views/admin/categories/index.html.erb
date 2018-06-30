@@ -12,6 +12,18 @@
 
       <br>
 
+      <div class="form-inline">
+        <%= form_for [:admin, @category] do |f| %>
+          <div class="form-group">
+            <%= f.text_field :name, placeholder: "Category Name", class: "form-control" %>
+            <%# placeholder 是為文字框顯示提示訊息 %>
+          </div>
+          <%= f.submit class: "btn btn-primary" %>
+        <% end %>
+      </div>
+
+      <br>
+
       <table class="table table-striped table-bordered">
         <thead>
           <tr>
