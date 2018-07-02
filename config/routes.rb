@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # except 語意與 only 相反
   # root "restaurants#index", except: [:new, :create, :edit, :update, 
   # :destroy]
+  resources :categories, only: :show
   
   root "restaurants#index"
 
