@@ -2,12 +2,11 @@
 <% @restaurants.each do |restaurat| %>
   <div class="col-sm-6 col-md-4">
     <div class="restaurant-item">
-      <!-- <%= image_tag restaurannt.image, class: "img-responsive center-block" %> -->
       <% for img_id in 0..20 %>
-        <% if image_path(restaurant.image).include? ('/' + img_id.to_s + '.jpg') %>
+        <% if image_path(restaurant.image).include?('/'+img_id.to_s+'.jpg') %>
         <%# 由路徑判斷圖檔名 %>
-          <%= image_tag('/seed_img/' + img_id.to_s + '.jpg', class: "img-responsive center-block") %>
-          <%# 顯示路徑改為public裡面的圖檔 %>
+          <%= image_tag('/seed_img/'+img_id.to_s+'.jpg', class: "img-responsive center-block") %>
+          <%# 顯示路徑改為public裡面的圖檔  %>
         <% end %>
       <% end %>
       <div class="caption">
