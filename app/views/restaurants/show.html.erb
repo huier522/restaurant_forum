@@ -37,17 +37,24 @@
 <div class="container">
   <div class="row">
 		<!-- 顯示與餐廳相關的評論 -->
-		<% @restaurant.comments.each do |comment| %>
+		<!-- 這裡是為了將留言保持在最上方而 congroller 那裡有設定 
+		@comments = @restaurant.comments 了，所以你在 view 裡面應該是要呼叫 @comments 這個實例變數 -->
+		<% @comments.each do |comment| %>
 			<div>
+				<!-- email 改成以名稱格式 -->
 				<h4><%= comment.user.email.split("@").first %></h4>
 				<p><%= simple_format comment.content %></p>
 				<p class="text-muted">
-					<em><%= time_ago_in_words(comment.created_at) %> ago </em>
+					<!-- 時間改成相對時間 -->
+					<em><%= time_ago_in_words(comment.created_at) %> ago - </em>
+					<% if current_user.admin? %>
+						<%= link_to 'Delete', restaurant_comment_path(@restaurant, comment), method: :delete, data: {confirm: "Are you sure?"} %>
+					<% end %>
 				</p>
 			</div>
 			<hr>
 		<% end %>
-		
+
 		<!-- 新增評論的表單輸入框 -->
    	<%= form_for [@restaurant, @comment] do |f| %>
     	<div class="form-group">
