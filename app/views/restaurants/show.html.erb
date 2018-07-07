@@ -1,9 +1,11 @@
 <div class="container">
 	<div class="row">
+
 		<div class="col-md-12">
 			<h1><%= @restaurant.name %></h1>
 			<p>[<%= @restaurant.category.name %>]</p>
 		</div>
+
 		<div class="col-md-4">
 			<%= image_tag @restaurant.image, class: "img-responsive center-block" %>
 			<%# class=class: "img-responsive center-block" 圖片居中 %>
@@ -16,11 +18,32 @@
 				</ul>
 			</div>
 		</div>
+
 		<div class="col-md-8">
 			<%= simple_format @restaurant.description %>
 		</div>
+
 		<div class="clearfix"></div>
+
 		<hr>
+
 		<%= link_to 'Back to index', admin_restaurants_path %>
+
 	</div>
+</div>
+
+<hr>
+
+<div class="container">
+  <div class="row">
+   	<%= form_for [@restaurant, @comment] do |f| %>
+    	<div class="form-group">
+      	<%= f.text_area :content, placeholder: "留個言吧", class: "form-control" %>
+    	</div>
+    	<div class="form-group">
+      	<%= f.submit class: "btn btn-primary" %>
+      	<%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
+    	</div>
+  	<% end %>
+  </div>
 </div>
