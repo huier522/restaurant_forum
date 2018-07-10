@@ -49,6 +49,7 @@
               <% end %>
               <li><p class="navbar-text"> Hi, <%= current_user.email %></p></li>
               <%# navbar-text：用於垂直置中 %>
+              <li><%= link_to('Profile', user_path(current_user)) %></li>
               <li><%= link_to('登出', destroy_user_session_path, method: :delete) %></li>
               <%# link_to 預設動作是 GET，所以需要指定到相對的method: :delete %>
               <li><%= link_to('修改密碼', edit_user_registration_path) %></li>
