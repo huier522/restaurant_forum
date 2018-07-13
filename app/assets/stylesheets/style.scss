@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+.nav-pills-center > li {
+  float: none;
+  display: inline-block;
+}
+
 .restaurant-item {
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -9,7 +14,7 @@
   margin-bottom: 20px;
 }
 
-.restaurant-item img{
+.restaurant-item img {
   max-height: 180px;
   width: 100%;
   // width 100% 可使圖片滿框
@@ -19,7 +24,25 @@
   padding: 10px;
 }
 
-.etit_user img {
+.edit_user img {
   width: 50px;
   margin: 10px;
+}
+
+.my-restaurant {
+  display: inline-block;
+  text-align: center;
+  padding: 7px 7px 0 7px;
+}
+
+.my-restaurant > div {
+  height: 60px;
+}
+
+.my-restaurant img {
+  max-height: 100%;
+}
+
+.panel a:hover .my-restaurant {
+  background-color: #eee;
 }
