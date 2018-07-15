@@ -22,4 +22,10 @@ class RestaurantsController < ApplicationController
 		# 最近建立的10筆評論
 		@recent_comments = Comment.order(created_at: :desc).limit(10)
 	end
+
+	# GET /restaurants/:id/dashboard(.:format)
+	# 會去 render app/views/restuarants/dashboard.html.erb
+	def dashboard
+		@restaurant = Restaurant.find(params[:id])
+	end
 end
