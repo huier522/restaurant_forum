@@ -4,5 +4,8 @@ class Restaurant < ApplicationRecord
   mount_uploader :image, PhotoUploader
 
   belongs_to :category
-  has_many :comments
+
+  # 加上 dependent: :destroy
+  # 刪除 Restaurant 時，就可以一併刪掉關聯的評論
+  has_many :comments, dependent: :destroy
 end
