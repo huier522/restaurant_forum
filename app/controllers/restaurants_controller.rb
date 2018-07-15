@@ -13,4 +13,13 @@ class RestaurantsController < ApplicationController
 		# 將 show page 的最近留言保持在最上方
 		@comments = @restaurant.comments.order('created_at desc')
 	end
+
+	# GET restaurants/feeds
+	# 會去 render app/views/restuarants/feeds.html.erb
+	def feeds
+		# 最近建立的10筆餐廳
+		@recent_restaurants = Restaurant.order(created_at: :desc).limit(10)
+		# 最近建立的10筆評論
+		@recent_comments = Comment.order(created_at: :desc).limit(10)
+	end
 end
