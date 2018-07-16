@@ -10,9 +10,14 @@ Rails.application.routes.draw do
       get :feeds
     end
 
-    # 瀏覽個別餐廳的 dashboard
+    # 自訂路由
     member do
+      # 瀏覽個別餐廳的 dashboard
       get :dashboard
+
+      # 收藏與不收藏不需要請求樣板所以習慣使用 post
+      post :favorite
+      post :unfacorite
     end
   end
   # except 語意與 only 相反
