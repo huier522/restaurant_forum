@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
       # 收藏與不收藏不需要請求樣板所以習慣使用 post
       post :favorite
-      post :unfacorite
+      post :unfavorite
     end
   end
   # except 語意與 only 相反
