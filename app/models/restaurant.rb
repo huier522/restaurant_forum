@@ -12,4 +12,13 @@ class Restaurant < ApplicationRecord
   # 餐廳擁有很多收藏者
   has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :user
+
+  # 檢查收藏紀錄是否存在
+  # 當你手上有一個 Restaurant 物件，以及一個 User 物件時，就可以在 favorites table 上查詢
+  # 看看是否有一筆資料，其外鍵 restaurant_id 和 user_id 都符合條件。
+  def is_favorited?(user)
+    # 使用關聯方法 self.favorited_users 查出該餐廳物件相關的所有 User 紀錄。
+    #  include?(user) 方法，查看這一堆 User 紀錄中，是否包含我們指定的 User 物件。
+    self.favorited_users.include?(user)
+  end
 end
