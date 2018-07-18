@@ -25,4 +25,9 @@ class Restaurant < ApplicationRecord
     #  include?(user) 方法，查看這一堆 User 紀錄中，是否包含我們指定的 User 物件。
     self.favorited_users.include?(user)
   end
+
+  # 檢查喜歡紀錄是否存在
+  def is_liked?(user)
+    self.liked_users.include?(user)
+  end
 end
