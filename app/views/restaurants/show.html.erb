@@ -29,10 +29,7 @@
 			<%= render partial: "shared/favorite", locals: {restaurant: @restaurant} %>
 
 			<%# 自動切換「Like / Unlike」 %>
-			<%= link_to 'Like', like_restaurant_path(@restaurant), 
-			method: :post, class: "btn btn-primary" %>
-			<%= link_to 'unlike', unlike_restaurant_path(@restaurant), 
-			method: :post, class: "btn btn-info" %>
+			<%= render partial: "shared/like", locals: {restaurant: @restaurant} %>
 			
 		</div>
 
