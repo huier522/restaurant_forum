@@ -15,9 +15,13 @@ Rails.application.routes.draw do
       # 瀏覽個別餐廳的 dashboard
       get :dashboard
 
-      # 收藏與不收藏不需要請求樣板所以習慣使用 post
+      # 收藏與不收藏並不需要請求樣板所以習慣使用 post
       post :favorite
       post :unfavorite
+
+      # 喜歡與不喜歡並不需要請求樣板所以習慣使用 post
+      post :like
+      post :unlike
     end
   end
   # except 語意與 only 相反
