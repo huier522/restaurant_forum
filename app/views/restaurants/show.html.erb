@@ -27,6 +27,12 @@
 			<%# 自動切換「Favorite / Unfavorite」 %>
 			<%# 使用 locals: {} 選項，為 Partial 裡的區域變數指定內容。 %>
 			<%= render partial: "shared/favorite", locals: {restaurant: @restaurant} %>
+
+			<%# 自動切換「Like / Unlike」 %>
+			<%= link_to 'Like', like_restaurant_path(@restaurant), 
+			method: :post, class: "btn btn-primary" %>
+			<%= link_to 'unlike', unlike_restaurant_path(@restaurant), 
+			method: :post, class: "btn btn-info" %>
 			
 		</div>
 

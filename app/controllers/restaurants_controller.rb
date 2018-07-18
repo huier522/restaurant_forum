@@ -1,7 +1,8 @@
 class RestaurantsController < ApplicationController
   before_action :authenticate_user!
 		# 想要修改或美化，可以至 app/views/devise/sessions/new.html.erb 進行編輯
-	before_action :set_restaurant, only: [:show, :dashboard, :favorite, :unfavorite]
+	before_action :set_restaurant, only: [:show, :dashboard, 
+		:favorite, :unfavorite, :like, :unlike]
     
 	def index
 		@restaurants = Restaurant.page(params[:page]).per(9)
@@ -45,6 +46,18 @@ class RestaurantsController < ApplicationController
 		# 由於有多個條件，所以我們會使用 where 方法來操作。
 		# 然而，因為 where 會回傳一個「物件集合」，不一定只有一筆資料，所以在這裡搭配刪除集合的 destroy_all 方法。
 		favorites.destroy_all
+		redirect_back(fallback_location: root_path)
+	end
+
+	def like
+		# 在 likes 資料表上建立一筆新紀錄，並寫入 restaurant_id 和 user_id
+		Like.create(restaurant: @restaurant, user: current_user)
+		redirect_back(fallback_location: root_path)
+	end
+
+	def unlike
+		likes = Like.where(restaurant: @restaurant, user: current_user)
+		likes.destroy_all
 		redirect_back(fallback_location: root_path)
 	end
 
