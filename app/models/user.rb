@@ -20,6 +20,12 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_restaurants, through: :likes, source: :restaurant
 
+  # user 之間可以互相追蹤的多對多關聯
+  # 一個 user 可以追縱很多人，刪除 user 時一併把追縱紀錄刪除
+  has_many :followships, dependent: :destroy
+  # 不需再加上 source: :following，因為方法命名與 belongs_to 相同
+  has_many :followings, through: :followships
+
   # admin? 讓我們用來判斷單個user是否有 admin 角色，列如：current_user.admin?
   def admin?
     self.role == "admin"
