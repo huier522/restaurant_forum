@@ -4,7 +4,8 @@ namespace :dev do
 
     500.times do |i|
       # 若不是用 .create! 即便出現錯誤，還是會 create 所有筆數
-      Restaurant.create!(name: FFaker::Name.first_name, 
+      # .unique 來創造不重複的假資料
+      Restaurant.create!(name: FFaker::Name.unique.first_name, 
         opening_hours: FFaker::Time.datetime, 
         tel: FFaker::PhoneNumber.short_phone_number, 
         address: FFaker::Address.street_address, 
@@ -19,7 +20,8 @@ namespace :dev do
 
   task fake_user: :environment do
     20.times do |i|
-      user_name = FFaker::Name.first_name
+      # .unique 來創造不重複的假資料
+      user_name = FFaker::Name.unique.first_name
       User.create!(
         email: "#{user_name}@example.com",
         password: "123456"
@@ -42,5 +44,5 @@ namespace :dev do
     puts "have created fake comments"
     puts "now you have #{Comment.count} comments data"
   end
-
+  
 end
