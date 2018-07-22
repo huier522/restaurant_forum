@@ -6,6 +6,10 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
+  validates_presence_of :name
+  validates_uniqueness_of :name
+  # validates_presence_of :intro
+
   # 如果 User 已經有了評論，就不允許刪除帳號（刪除時拋出 Error）
   has_many :comments, dependent: :restrict_with_error
   # 設定成 user 與 restaurant 多對多關聯，rails就會知道comments table
@@ -30,13 +34,5 @@ class User < ApplicationRecord
   def admin?
     self.role == "admin"
   end
-
-  validates_presence_of :name
-  validates_uniqueness_of :name
-  validates_presence_of :intro
-
-  # 每個 User 只能追蹤另一個 User 一次
-  # 即特定的 user_id 下，只能有一個 followings_id，搭配 :scope 來限制範圍
-  validates :following_id, uniqueness: { scope: :user_id }
 
 end
