@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <ul>
+    <% @users.each do |user| %>
+      <li>
+        <%# 利用 user email 當 user name %>
+        <%= user.email.split('@').first %>
+        <%# following_id 即傳入使用者想要追縰的人，
+        這個資訊會來自在 @user.each 設定的變數 user %>
+        <%= link_to 'Follow', followships_path(followiing_id: user), method: :post %>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+</div>
