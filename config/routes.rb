@@ -28,7 +28,10 @@ Rails.application.routes.draw do
   # root "restaurants#index", except: [:new, :create, :edit, :update, 
   # :destroy]
 
-  resources :users, only: [:show, :edit, :update]
+  # index page route for follow/unfollow 
+  resources :users, only: [:index, :show, :edit, :update]
+  # follow/unfollow 除了自訂路由，也可以使用符合 CRUD 慣例的設定方式
+  resources :followships, only: [:create, :destroy]
 
   resources :categories, only: :show
   
