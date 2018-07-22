@@ -7,6 +7,10 @@
         <%# following_id 即傳入使用者想要追縰的人，
         這個資訊會來自在 @user.each 設定的變數 user %>
         <%= link_to 'Follow', followships_path(following_id: user), method: :post %>
+        <%# current_user 發起 unfollow action，
+        following_id：被追蹤的 User，由於 destroy action 要求網址攜帶 :id，
+         Controller 裡直接用 params[:id] 查出被追蹤者的 id %>
+        <%= link_to 'Unfollow', followship_path(user), method: :delete %>
       </li>
     <% end %>
     </ul>
