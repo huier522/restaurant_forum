@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
 
+  def index
+    @users = User.all
+  end
+
   def show
     # .uniq 使得 @user.restaurants 資料不重覆
     @commented_restaurants = @user.restaurants.uniq
