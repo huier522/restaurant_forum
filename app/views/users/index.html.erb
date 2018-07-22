@@ -7,7 +7,7 @@
         <%= user.email.split('@').first %>
         <%# following_id 即傳入使用者想要追縰的人，
         這個資訊會來自在 @user.each 設定的變數 user %>
-        <%= link_to 'Follow', followships_path(followiing_id: user), method: :post %>
+        <%= link_to 'Follow', followships_path(following_id: user), method: :post %>
       </li>
     <% end %>
     </ul>
