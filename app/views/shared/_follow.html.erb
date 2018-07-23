@@ -1,0 +1,20 @@
+<!-- 
+following_id 即傳入使用者想要追縰的人，
+這個資訊會來自在 @user.each 設定的變數 user
+
+current_user 發起 unfollow action，
+following_id：被追蹤的 User，由於 destroy action 要求網址攜帶 :id，
+Controller 裡直接用 params[:id] 查出被追蹤者的 id
+
+ 只有當 user 不是 current_user」時，才會顯示按鈕 
+ -->
+
+<% if user != current_user %>
+  <% if current_user.following?(user) %>
+    <!-- 會用 DELETE 動作導向 http://localhost:3000/followships/{user.id} -->
+    <%= link_to 'Unfollow', followship_path(user), method: :delete %>
+  <% else %>
+    <!-- 會用 POST 動作導向 http://localhost:3000/followships?following_id={user.id} -->
+    <%= link_to 'Follow', followships_path(following_id: user), method: :post %>
+  <% end %>
+<% end %>
