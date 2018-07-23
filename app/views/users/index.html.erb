@@ -1,13 +1,46 @@
 <div class="container">
   <div class="row">
-    <ul>
-        <% @users.each do |user| %>
-          <li>
-            <%= user.name %>
-            <!-- 使用 locals 來傳入區域變數，在這裡，需要傳入 @users.each 下的變數 user -->
-            <%= render partial: "shared/follow", locals: {user: user} %>
-          </li>
-        <% end %>
+
+    <ul class="nav nav-tabs">
+      <li role="presentation">
+        <%= link_to '首頁', root_path %>
+      </li>
+      <li role="presentation">
+        <%= link_to '最新動態', feeds_restaurants_path %>
+      </li>
+      <li role="presentation" class="active">
+        <%= link_to '美食達人', users_path %>
+      </li>
     </ul>
+
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-12">
+      <div class="page-header">
+        <h1>美食達人</h1>
+      </div>
+    </div>
+
+    <% @users.each do |user| %>
+      <div class="col-md-3 col-sm-4 col-xs-6 text-center user-item">
+
+        <%= link_to user_path(user) do %>
+          <!-- 先利用 Placeholder  <img src="http://via.placeholder.com/128x128"> 產生圖片 -->
+          <img src="http://via.placeholder.com/128x128">
+          <!-- <%= image_tag(user.avatar, class: "img-rounded") %> -->
+          <h4><%= user.name %></h4>
+        <% end %>
+
+        <!-- 使用 locals 來傳入區域變數，在這裡，需要傳入 @users.each 下的變數 user -->
+        <%= render partial: "shared/follow", locals: {user: user} %>
+
+      </div>
+    <% end %>
+
   </div>
 </div>
