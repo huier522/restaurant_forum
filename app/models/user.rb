@@ -35,6 +35,11 @@ class User < ApplicationRecord
   has_many :inverse_followships, class_name: "Followship", foreign_key: "following_id"
   has_many :followers, through: :inverse_followships, source: :user
 
+  # 一個 User 擁有很多交友紀錄(friendships)
+  has_many :friendships, dependent: :destroy
+  # 透過交友紀錄，一個 User 可以跟很多其他 User 加好友(friends)
+  has_many :friends, through: :friendships
+
   # admin? 讓我們用來判斷單個user是否有 admin 角色，列如：current_user.admin?
   def admin?
     self.role == "admin"
