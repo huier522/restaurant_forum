@@ -6,8 +6,16 @@ class UsersController < ApplicationController
   end
 
   def show
+    # 評論過的餐廳
     # .uniq 使得 @user.restaurants 資料不重覆
     @commented_restaurants = @user.restaurants.uniq
+
+    # 收藏過的餐廳
+    @favorited_restaurants = @user.favorited_restaurants.uniq  
+    # 追縱的美食達人
+    @followings = @user.followings
+    # 當前使用者被哪些美食達人追縱
+    @followers = @user.followers
   end
 
   def edit
