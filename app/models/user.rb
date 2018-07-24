@@ -50,4 +50,9 @@ class User < ApplicationRecord
     self.followings.include?(user)
   end
 
+  # 在 friendship table 上查詢，看看是否有已經存在的紀錄
+  def friend?(user)
+    self.friends.include?(user)
+  end
+
 end
