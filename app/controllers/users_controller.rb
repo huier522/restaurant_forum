@@ -34,6 +34,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def friend_list
+    @frineds = current_user.all_friends
+  end
+
   private
 
   def set_user
