@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong><%= current_user.all_friends.count %></strong> 個好友</h3>
+          </div>
+
+          <ul class="list-group">
+            <% current_user.all_friends.each do |friend| %>
+            <li class="list-group-item">
+              <%= link_to user_path(friend) do %>
+                <% if friend.avatar? %>
+                  <%= image_tag(friend.avatar, height: 60, width: 60, class: "img-circle") %>
+                <% else %>
+                  <img src="http://via.placeholder.com/60x60" class="img-circle">
+                <% end %>
+                <%= friend.name %>
+              <% end %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+    </div>
+  </div>
+</div>
