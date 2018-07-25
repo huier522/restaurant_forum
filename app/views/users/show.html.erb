@@ -44,8 +44,12 @@
             <% @followings.each do |following| %>
             <li class="list-group-item">
               <%= link_to user_path(following) do %>
-                <%= image_tag(following.avatar, height: 30, width: 30, class: "img-circle") %>
-                  <%= following.name %>
+                <% if following.avatar? %>
+                  <%= image_tag(following.avatar, height: 30, width: 30, class: "img-circle") %>
+                <% else %>
+                  <img src="http://via.placeholder.com/30x30" class="img-circle">
+                <% end %>
+                <%= following.name %>
               <% end %>
             </li>
             <% end %>
@@ -62,7 +66,11 @@
             <% @followers.each do |follower| %>
             <li class="list-group-item">
               <%= link_to user_path(follower) do %>
-                <%= image_tag(follower.avatar, height: 30, width: 30, class: "img-circle") %>
+                <% if follower.avatar? %>
+                  <%= image_tag(follower.avatar, height: 30, width: 30, class: "img-circle") %>
+                <% else %>
+                  <img src="http://via.placeholder.com/30x30" class="img-circle">
+                <% end %>
                 <%= follower.name %>
               <% end %>
             </li>
