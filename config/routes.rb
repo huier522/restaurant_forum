@@ -29,7 +29,12 @@ Rails.application.routes.draw do
   # :destroy]
 
   # index page route for follow/unfollow 
-  resources :users, only: [:index, :show, :edit, :update]
+  resources :users, only: [:index, :show, :edit, :update] do
+    member do
+      # 在 User Profile 頁面上，新增一個連結入口，指向「我的好友」頁面
+      get :friend_list
+    end
+  end
   # follow/unfollow 除了自訂路由，也可以使用符合 CRUD 慣例的設定方式
   resources :followships, only: [:create, :destroy]
 
