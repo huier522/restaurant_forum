@@ -40,6 +40,10 @@ class User < ApplicationRecord
   # 透過交友紀錄，一個 User 可以跟很多其他 User 加好友(friends)
   has_many :friends, through: :friendships
 
+  # 以「把使用者加入好友的其他人」即 foreign_key的角度的關聯設定
+  has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
+  has_many :friendlys, through: :inverse_friendships, source: :user
+
   # admin? 讓我們用來判斷單個user是否有 admin 角色，列如：current_user.admin?
   def admin?
     self.role == "admin"
@@ -53,6 +57,13 @@ class User < ApplicationRecord
   # 在 friendship table 上查詢，看看是否有已經存在的紀錄
   def friend?(user)
     self.friends.include?(user)
+  end
+
+  def all_friends
+    # 無論是使用者主動加入、或由別人提出的好友關係，都會包括在 all_friends 的回傳結果裡
+    friend_whos = self.friends + self.friendlys
+    # 如果兩邊都提出好友，在這個清單中不會有重覆的資料跑出來
+    return friend_whos.uniq
   end
 
 end
