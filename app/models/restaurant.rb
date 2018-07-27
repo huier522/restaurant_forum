@@ -30,4 +30,10 @@ class Restaurant < ApplicationRecord
   def is_liked?(user)
     self.liked_users.include?(user)
   end
+
+  # 計算餐廳收藏數的方法
+  def ranking_favorites
+    self.favorites_count = self.favorites.size
+    self.save
+  end
 end

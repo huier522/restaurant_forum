@@ -36,6 +36,8 @@ class RestaurantsController < ApplicationController
 		# @restaurant = Restaurant.find(params[:id])
 		# 在 favorites 資料表上建立一筆新紀錄，並寫入 restaurant_id 和 user_id
 		Favorite.create(restaurant: @restaurant, user: current_user)
+		# 新增計算餐廳收藏數的方法
+		@restaurant.ranking_favorites
 		# 導回上一頁
 		redirect_back(fallback_location: root_path)
 	end
@@ -46,6 +48,8 @@ class RestaurantsController < ApplicationController
 		# 由於有多個條件，所以我們會使用 where 方法來操作。
 		# 然而，因為 where 會回傳一個「物件集合」，不一定只有一筆資料，所以在這裡搭配刪除集合的 destroy_all 方法。
 		favorites.destroy_all
+		# 新增計算餐廳收藏數的方法
+		@restaurant.ranking_favorites
 		redirect_back(fallback_location: root_path)
 	end
 
