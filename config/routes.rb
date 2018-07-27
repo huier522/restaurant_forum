@@ -5,9 +5,11 @@ Rails.application.routes.draw do
     # 利用 nested resources 的方式宣告特定餐廳下的評論，讓使用者可以 create，管理者可以 destroy
     resources :comments, only: [:create, :destroy]
 
-    # 瀏覽所有餐廳的最新動態
     collection do
+      # 瀏覽所有餐廳的最新動態
       get :feeds
+      # 十大人氣餐廳
+      get :ranking
     end
 
     # 自訂路由
