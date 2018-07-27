@@ -53,6 +53,11 @@ class RestaurantsController < ApplicationController
 		redirect_back(fallback_location: root_path)
 	end
 
+	def ranking
+		# 以餐廳的favorites_count欄位值排出前10大
+		@ranking_restaurants = Restaurant.order(favorites_count: :desc).limit(10)
+	end
+
 	def like
 		# 在 likes 資料表上建立一筆新紀錄，並寫入 restaurant_id 和 user_id
 		Like.create(restaurant: @restaurant, user: current_user)

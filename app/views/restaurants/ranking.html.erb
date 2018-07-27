@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+
+    <!-- 使用 Bootstrap components 的 Nav Tabs -->
+    <!-- https://getbootstrap.com/docs/3.3/components/#nav-tabs -->
+    <ul class="nav nav-tabs">
+      <li role="presentation">
+        <%= link_to '首頁', root_path %>
+      </li>
+      <li role="presentation">
+        <%= link_to '最新動態', feeds_restaurants_path %>
+      </li>
+      <li role="presentation">
+        <%= link_to '美食達人', users_path %>
+      </li>
+      <li role="presentation" class="active">
+        <%= link_to 'TOP10 人氣餐廳', ranking_restaurants_path %>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+<h1>TOP 10 人氣餐廳 <small>(收藏數最高)</small></h1>
+
+<hr>
+
+<div class="container">
+  <div class="row">
+
+    <% @ranking_restaurants.each do |restaurant| %>
+      <%= image_tag restaurant.image %>
+      <h4><%= restaurant.name %></h4>
+      <span>收藏數：<%= restaurant.favorites_count %></span>
+      <p><%= truncate(restaurant.description, length: 200) %></p>
+      <%= link_to 'Show', restaurant_path(restaurant), class: "btn btn-primary" %>
+      <%= render partial: 'shared/favorite', locals: { restaurant: restaurant} %>
+    <% end %>
+
+  </div>
+</div>
