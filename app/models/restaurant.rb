@@ -32,8 +32,11 @@ class Restaurant < ApplicationRecord
   end
 
   # 計算餐廳收藏數的方法
+=begin
+  # 因 counter_cache 不再需要此方法
   def ranking_favorites
     self.favorites_count = self.favorites.size
     self.save
   end
+=end
 end
